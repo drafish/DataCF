@@ -1,0 +1,34 @@
+{
+  "name": "datacf",
+  "version": "1.0.0",
+  "description": "DataCF是一个数据采集框架",
+  "scripts": {
+    "start": "webpack-dev-server --open --config config/webpack.dev.js",
+    "build": "cross-env NODE_ENV='production' webpack --config config/webpack.prod.js",
+    "build_test": "cross-env NODE_ENV='test' webpack --config config/webpack.prod.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "cross-env": "^5.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xwlyy/DataCF.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xwlyy/DataCF/issues"
+  },
+  "homepage": "https://github.com/xwlyy/DataCF#readme"
+}

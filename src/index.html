@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SDK测试</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+
+</body>
+<script>
+	(function() {
+		var collect = document.createElement('script');
+		collect.type = 'text/javascript';
+		collect.async = true;
+		collect.src =  '/index.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(collect, s);
+	})();
+</script>
+</html>
