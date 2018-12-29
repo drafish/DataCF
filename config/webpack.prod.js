@@ -11,7 +11,7 @@ module.exports = merge(common, {
       new UglifyJsPlugin({
         sourceMap: true,
         uglifyOptions: {
-          compress: false
+          compress: {properties: false}
         }
       })
     ]
