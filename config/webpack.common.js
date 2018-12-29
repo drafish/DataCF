@@ -25,7 +25,12 @@ module.exports = {
 	},
 	module: {
 		rules: [
-		  {
+			{
+				test: /.js$/,
+				enforce: 'post', // post-loader处理
+				loader: 'es3ify-loader'
+			},
+			{
 				test: /\.js$/,
 				exclude: /(node_modules|bower_components)/,
 				use: {
@@ -34,7 +39,7 @@ module.exports = {
 						presets: ['@babel/preset-env']
 					}
 				}
-		  }
+			}
 		]
 	}
 }
