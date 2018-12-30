@@ -20,7 +20,7 @@ function createXhr(method, url, headers, callback) {
 
     xhr.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
         if (xhr.readyState == 4 && xhr.status == 200) {
-            typeof callback === 'function' && callback()
+            typeof callback === 'function' && callback(JSON.parse(xhr.responseText))
         }
     }
 
