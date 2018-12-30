@@ -7,7 +7,7 @@
     "build": "cross-env NODE_ENV='prod' webpack --config config/webpack.prod.js",
     "build_test": "cross-env NODE_ENV='test' webpack --config config/webpack.prod.js",
     "test": "mocha",
-    "standard": "standard --fix src/**/*.js test/**/*.js"
+    "standard": "standard --fix config/**/*.js src/**/*.js test/**/*.js"
   },
   "standard": {
     "env": [
