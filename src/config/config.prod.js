@@ -1,3 +1,3 @@
 module.exports = {
-    domain: 'www.prod.com'
-};
+  domain: 'www.prod.com'
+}
