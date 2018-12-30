@@ -9,7 +9,12 @@ util.uuid = function () {
 };
 
 util.random = function () {
-    return 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    let str = '';
+    let len = 32
+    for (let i = 0; i < len;i++) {
+        str = str + 'x'
+    }
+    return str.replace(/[xy]/g, function (c) {
         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
