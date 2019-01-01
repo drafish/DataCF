@@ -1,3 +1,3 @@
-export default {
-    domain: 'www.prod.com'
-};
+module.exports = {
+  domain: 'www.prod.com'
+}
