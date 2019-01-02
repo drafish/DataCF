@@ -1,6 +1,6 @@
 require('core-js/fn/object/define-property')
 
-const add = require('./deviceId').default
+const add = require('./core').default
 
 console.log(add(1, 2))
 
