@@ -12,7 +12,8 @@ module.exports = merge(common, {
         sourceMap: true,
         uglifyOptions: {
           compress: { properties: false },
-          ie8: true
+          ie8: true,
+          mangle: false
         }
       })
     ]

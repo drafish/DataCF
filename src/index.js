@@ -1,9 +1,9 @@
-'use strict';
+require('core-js/fn/object/define-property')
 
-const config = require('./config')
+const add = require('./deviceId').default
 
-console.log(config)
+console.log(add(1, 2))
 
 window.sdk = {
-	
+
 }

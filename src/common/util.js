@@ -1,14 +1,11 @@
 'use strict'
 
-// 扩展帮助方法*/
-var util = {}
-
 // 唯一标示 uuid,pageSessionId
-util.uuid = function () {
-  return new Date().getTime() + '|' + util.random()
+export function uuid () {
+  return new Date().getTime() + '|' + random()
 }
 
-util.random = function () {
+export function random () {
   let str = ''
   let len = 32
   for (let i = 0; i < len; i++) {
@@ -20,6 +17,10 @@ util.random = function () {
   })
 }
 
+export function add (x, y) {
+  return x + y
+}
+
 // 返回数组元素所在的位置，确定是否包含在里面
 /**
  *@method indexOf
@@ -27,7 +28,7 @@ util.random = function () {
  *@parame item 查找的元素
  *@return args  返回位置
  **/
-util.indexOf = function (arrayToSearch, item) {
+export function indexOf (arrayToSearch, item) {
   if (Array.prototype.indexOf) {
     return arrayToSearch.indexOf(item)
   } else {
@@ -37,5 +38,3 @@ util.indexOf = function (arrayToSearch, item) {
     return -1
   }
 }
-
-module.exports = util

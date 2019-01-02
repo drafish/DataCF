@@ -31,12 +31,18 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-			presets: ['@babel/preset-env'],
-			plugins: [
-				["@babel/plugin-transform-modules-commonjs", {
-				  loose: true
-				}]
-			  ]
+            presets: ['@babel/preset-env'],
+            plugins: [
+              [
+                '@babel/plugin-transform-runtime',
+                {
+                  'corejs': 2,
+                  'helpers': true,
+                  'regenerator': true,
+                  'useESModules': false
+                }
+              ]
+            ]
           }
         }
       }
