@@ -41,6 +41,9 @@ module.exports = {
                   'regenerator': true,
                   'useESModules': false
                 }
+              ],
+              [
+                '@babel/plugin-transform-modules-commonjs'
               ]
             ]
           }
