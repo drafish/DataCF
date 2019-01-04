@@ -1,0 +1,5 @@
+require('core-js/fn/object/define-property')
+require('core-js/fn/object/create')
+require('core-js/fn/array/for-each')
+require('core-js/fn/promise')
+require('./index.js')

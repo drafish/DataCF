@@ -6,7 +6,7 @@
     "start": "webpack-dev-server --open --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV='prod' webpack --config config/webpack.prod.js",
     "build_test": "cross-env NODE_ENV='test' webpack --config config/webpack.prod.js",
-    "test": "mocha",
+    "test": "mocha --require @babel/register",
     "standard": "standard --fix config/**/*.js src/**/*.js test/**/*.js"
   },
   "standard": {
@@ -18,15 +18,20 @@
       "ActiveXObject"
     ]
   },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
   "sideEffects": false,
   "dependencies": {
-    "@babel/runtime": "^7.2.0",
-    "@babel/runtime-corejs2": "^7.2.0"
+    "@babel/runtime": "^7.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
+    "@babel/core": "^7.2.2",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.4",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",

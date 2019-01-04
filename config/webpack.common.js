@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: {
     'index': path.resolve(__dirname, '../src/index.js'),
+    'index_ie': path.resolve(__dirname, '../src/index_ie.js'),
     'deviceId': path.resolve(__dirname, '../src/deviceId.js')
   },
   plugins: [
@@ -31,16 +32,12 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: [
+              '@babel/preset-env'
+            ],
             plugins: [
               [
                 '@babel/plugin-transform-runtime',
-                {
-                  'corejs': 2,
-                  'helpers': true,
-                  'regenerator': true,
-                  'useESModules': false
-                }
               ],
               [
                 '@babel/plugin-transform-modules-commonjs'

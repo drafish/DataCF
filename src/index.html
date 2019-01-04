@@ -13,7 +13,11 @@
 		var collect = document.createElement('script');
 		collect.type = 'text/javascript';
 		collect.async = true;
-		collect.src =  '/index.js';
+		if(!!window.ActiveXObject || "ActiveXObject" in window) {
+			collect.src =  '/index_ie.js';
+		} else {
+			collect.src =  '/index.js';
+		}
 		var s = document.getElementsByTagName('script')[0];
 		s.parentNode.insertBefore(collect, s);
 	})();
