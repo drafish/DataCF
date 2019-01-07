@@ -1,49 +1,42 @@
-const ws = {}
+export default class Ws {
+  constructor(options) {
 
-ws.create = function (url, data) {
-  const socket = new WebSocket(url)
+    const socket = new WebSocket(options.url)
 
-  socket.onopen = function (event) {
-    console.log('Connection open ...')
-    if (data) {
-      socket.send(data)
+    socket.onopen = function (event) {
+      console.log('Connection open ...')
+    }
+
+    socket.onmessage = function (event) {
+      console.log('Received Message: ' + event.data)
+    }
+
+    socket.onclose = function (event) {
+      console.log('Connection closed.')
+    }
+
+    socket.onerror = function (event) {
+      console.log('Connection error.')
+    }
+
+    this.socket = socket
+    this.url = options.url
+  }
+
+  send (data) {
+    this.socket.send(data)
+  }
+
+  close () {
+    this.socket && this.socket.close && this.socket.close()
+  }
+
+  isOpen () {
+    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+      return true
+    } else {
+      return false
     }
   }
 
-  socket.onmessage = function (event) {
-    console.log('Received Message: ' + event.data)
-  }
-
-  socket.onclose = function (event) {
-    console.log('Connection closed.')
-  }
-
-  socket.onerror = function (event) {
-    console.log('Connection error.')
-  }
-
-  ws.socket = socket
-  ws.url = url
 }
-
-ws.send = function (data) {
-  if (ws.socket && ws.socket.readyState === WebSocket.OPEN) {
-    ws.socket.send(data)
-  } else {
-    ws.create(ws.url, data)
-  }
-}
-
-ws.close = function () {
-  ws.socket && ws.socket.close && ws.socket.close()
-}
-
-ws.isSupported = function () {
-  if (window.WebSocket !== undefined) {
-    return true
-  } else {
-    return false
-  }
-}
-
-module.exports = ws

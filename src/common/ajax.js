@@ -1,41 +1,67 @@
-const ajax = {}
+import {IEVersion} from './util'
 
-function createXhr (method, url, headers, callback) {
-  var xhr
-  if (window.XMLHttpRequest) {
-    xhr = new XMLHttpRequest()
-  } else {
-    xhr = new ActiveXObject('Microsoft.XMLHTTP')
+export default class Ajax {
+  constructor(options) {
+
+    var ieVersion = IEVersion()
+
+    var xhr
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest()
+
+      if (ieVersion > -1 && ieVersion < 10) {
+        xhr = new window.XDomainRequest()
+      }
+    } else {
+      xhr = new ActiveXObject('Microsoft.XMLHTTP')
+    }
+
+    xhr.open(options.method, options.url)
+
+    // 显示关闭withCredentials，这样就不会发送cookie
+    xhr.withCredentials = false
+
+    this.xhr = xhr
+    this.ieVersion = ieVersion
+
   }
 
-  xhr.open(method, url)
-
-  for (var key in headers) {
-    xhr.setRequestHeader(key, headers[key])
-  }
-
-  // 显示关闭withCredentials，这样就不会发送cookie
-  xhr.withCredentials = false
-
-  xhr.onreadystatechange = function () { // 服务器返回值的处理函数，此处使用匿名函数进行实现
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      typeof callback === 'function' && callback(JSON.parse(xhr.responseText))
+  header (headers) {
+    if (this.ieVersion > -1 && this.ieVersion < 10) {
+      this.headers = headers
+    } else {
+      for (var key in headers) {
+        this.xhr.setRequestHeader(key, headers[key])
+      }
     }
   }
 
-  return xhr
+  send (data) {
+    if (typeof data === 'object') {
+      if (this.headers) {
+        data.headers = this.headers
+      }
+      data = JSON.stringify(data)
+    } else {
+      data = null
+    }
+
+    var xhr = this.xhr
+    return new Promise((resolve) => {
+      xhr.send(data)
+
+      if (this.ieVersion > -1 && this.ieVersion < 10) {
+        xhr.onload = function() {
+          resolve(xhr.responseText)
+        }
+      } else {
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            resolve(xhr.responseText)
+          }
+        }
+      }
+    })
+  }
 }
 
-ajax.get = function (options) {
-  var xhr = createXhr('GET', options.url, options.headers, options.callback)
-
-  xhr.send()
-}
-
-ajax.post = function (options) {
-  var xhr = createXhr('POST', options.url, options.headers, options.callback)
-
-  xhr.send(JSON.stringify(options.params))
-}
-
-module.exports = ajax

@@ -1,10 +1,12 @@
 const Koa = require('koa')
 const app = new Koa()
 const router = require('./router')
-const ws = require('./ws')
+const initWs = require('./ws')
 app.use(router.routes())
 
 const server = require('http').Server(app.callback())
-ws.init(server)
+initWs(server)
 
-server.listen(8081)
+server.listen(8081, function () {
+    console.log('server listen at port 8081')
+})
