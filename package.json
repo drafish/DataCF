@@ -7,7 +7,6 @@
     "build": "cross-env NODE_ENV='prod' webpack --config config/webpack.prod.js",
     "build_test": "cross-env NODE_ENV='test' webpack --config config/webpack.prod.js",
     "test": "mocha --require @babel/register",
-    "server": "node server/index.js",
     "standard": "standard --fix config/**/*.js src/**/*.js server/**/*.js test/**/*.js"
   },
   "standard": {
@@ -27,10 +26,7 @@
   "sideEffects": false,
   "dependencies": {
     "@babel/runtime": "^7.2.0",
-    "koa": "^2.6.2",
-    "koa-router": "^7.4.0",
-    "lodash": "^4.17.11",
-    "ws": "^6.1.2"
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

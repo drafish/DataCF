@@ -9,4 +9,11 @@ router.post('/', (ctx, next) => {
   ctx.body = JSON.stringify({ a: '1' })
 })
 
+router.get('/', async (ctx, next) => {
+  let title = 'hello koa2'
+  await ctx.render('index', {
+    title,
+  })
+})
+
 module.exports = router
