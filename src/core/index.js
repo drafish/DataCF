@@ -2,11 +2,13 @@ import indexOf from 'lodash/indexOf'
 import Ws from '../common/ws'
 import Ajax from '../common/ajax'
 import {isSupportWs, IEVersion} from '../common/util'
+const config = require('../config')
 
 export default async function main () {
   console.log('indexOf:', indexOf([1, 2, 1, 2], 2, 2))
   console.log('isSupportWs: ', isSupportWs())
   console.log('IEVersion: ', IEVersion())
+  console.log('config: ', config)
 
   if (isSupportWs()) {
     const ws = new Ws({url: 'ws://localhost:8081'})
