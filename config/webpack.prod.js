@@ -3,7 +3,7 @@ const merge = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const common = require('./webpack.common.js')
 
-module.exports = merge(common, {
+module.exports = common.map(config => merge(config, {
   mode: 'production',
   devtool: 'source-map',
   optimization: {
@@ -23,4 +23,4 @@ module.exports = merge(common, {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ]
-})
+}))

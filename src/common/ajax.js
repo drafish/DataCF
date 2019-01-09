@@ -9,7 +9,7 @@ export default class Ajax {
     if (window.XMLHttpRequest) {
       xhr = new XMLHttpRequest()
 
-      if (ieVersion > -1 && ieVersion < 10) {
+      if ([8,9].indexOf(ieVersion) > -1) {
         xhr = new window.XDomainRequest()
       }
     } else {
@@ -27,7 +27,7 @@ export default class Ajax {
   }
 
   header (headers) {
-    if (this.ieVersion > -1 && this.ieVersion < 10) {
+    if ([8,9].indexOf(this.ieVersion) > -1) {
       this.headers = headers
     } else {
       for (var key in headers) {
@@ -50,7 +50,7 @@ export default class Ajax {
     return new Promise((resolve) => {
       xhr.send(data)
 
-      if (this.ieVersion > -1 && this.ieVersion < 10) {
+      if ([8,9].indexOf(this.ieVersion) > -1) {
         xhr.onload = function() {
           resolve(xhr.responseText)
         }

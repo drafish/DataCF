@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
 
-module.exports = merge(common, {
+module.exports = common.map(config => merge(config, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
@@ -13,4 +13,4 @@ module.exports = merge(common, {
       'process.env.NODE_ENV': JSON.stringify('dev')
     })
   ]
-})
+}))
