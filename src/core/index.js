@@ -1,7 +1,7 @@
 import indexOf from 'lodash/indexOf'
 import Ws from '../common/ws'
 import Ajax from '../common/ajax'
-import {isSupportWs, IEVersion} from '../common/util'
+import { isSupportWs, IEVersion } from '../common/util'
 const config = require('../config')
 
 export default async function main () {
@@ -11,7 +11,7 @@ export default async function main () {
   console.log('config: ', config)
 
   if (isSupportWs()) {
-    const ws = new Ws({url: 'ws://localhost:8081'})
+    const ws = new Ws({ url: 'ws://localhost:8081' })
 
     console.log('isOpen: ', ws.isOpen())
     setTimeout(function () {
@@ -29,7 +29,7 @@ export default async function main () {
     method: 'POST'
   })
   console.log('start ajax')
-  var res = await ajax.send({a:1})
+  var res = await ajax.send({ a: 1 })
   console.log('res: ', res)
   console.log('end ajax')
 }

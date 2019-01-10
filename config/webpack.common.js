@@ -17,6 +17,9 @@ module.exports = [{
       filename: 'iframe.html',
       template: path.resolve(__dirname, '../src/iframe.html'),
       inject: false
+    }),
+    new webpack.DefinePlugin({
+      'process.env.BROWSER_VERSION': JSON.stringify('NOT_IE')
     })
   ],
   output: {
@@ -44,17 +47,18 @@ module.exports = [{
         }
       }
     ]
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.BROWSER_VERSION': JSON.stringify('NOT_IE')
-    })
-  ]
+  }
 },
 {
   entry: {
     'index_ie': path.resolve(__dirname, '../src/index.js'),
+    'iframe_ie': path.resolve(__dirname, '../src/iframe.js')
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.BROWSER_VERSION': JSON.stringify('IE')
+    })
+  ],
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
@@ -83,10 +87,5 @@ module.exports = [{
         }
       }
     ]
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.BROWSER_VERSION': JSON.stringify('IE')
-    })
-  ]
+  }
 }]

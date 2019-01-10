@@ -1,15 +1,14 @@
-import {IEVersion} from './util'
+import { IEVersion } from './util'
 
 export default class Ajax {
-  constructor(options) {
-
+  constructor (options) {
     var ieVersion = IEVersion()
 
     var xhr
     if (window.XMLHttpRequest) {
       xhr = new XMLHttpRequest()
 
-      if ([8,9].indexOf(ieVersion) > -1) {
+      if ([8, 9].indexOf(ieVersion) > -1) {
         xhr = new window.XDomainRequest()
       }
     } else {
@@ -23,11 +22,10 @@ export default class Ajax {
 
     this.xhr = xhr
     this.ieVersion = ieVersion
-
   }
 
   header (headers) {
-    if ([8,9].indexOf(this.ieVersion) > -1) {
+    if ([8, 9].indexOf(this.ieVersion) > -1) {
       this.headers = headers
     } else {
       for (var key in headers) {
@@ -50,8 +48,8 @@ export default class Ajax {
     return new Promise((resolve) => {
       xhr.send(data)
 
-      if ([8,9].indexOf(this.ieVersion) > -1) {
-        xhr.onload = function() {
+      if ([8, 9].indexOf(this.ieVersion) > -1) {
+        xhr.onload = function () {
           resolve(xhr.responseText)
         }
       } else {
@@ -64,4 +62,3 @@ export default class Ajax {
     })
   }
 }
-

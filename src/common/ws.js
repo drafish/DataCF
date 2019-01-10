@@ -1,6 +1,5 @@
 export default class Ws {
-  constructor(options) {
-
+  constructor (options) {
     const socket = new WebSocket(options.url)
 
     socket.onopen = function (event) {
@@ -38,5 +37,4 @@ export default class Ws {
       return false
     }
   }
-
 }
